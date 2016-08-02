@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app 
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1"
+>
+    <display-name>apex</display-name>
+
+	<!-- Servlet class "rest" with url pattern "/*" means any uri with the root 
+		of this web application will call DispatcherServlet. DispatcherServlet will 
+		look for configuration files following this naming convention - [servlet-name]-servlet.xml. 
+		So with dispatcher servlet class as "rest" it will look for file named 'rest-servlet.xml'. -->
+		
+	<servlet>
+		<servlet-name>apex</servlet-name>
+		<servlet-class>
+			org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+	
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>apex</servlet-name>
+		<url-pattern>/api/*</url-pattern>
+	</servlet-mapping>
+
+    
+</web-app>
