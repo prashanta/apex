@@ -16,15 +16,11 @@ public class Supply {
 	
 	String ium;
 	
-	String jobNum;
-	
-	int assemblySequence;
-	
-	int jobSequence;
-	
 	int poNum;
 	
 	int poLine;
+	
+	String vendorName;
 	
 	String sourceFile;
 
@@ -75,30 +71,6 @@ public class Supply {
 	public void setIum(String ium) {
 		this.ium = ium;
 	}
-
-	public String getJobNum() {
-		return jobNum;
-	}
-
-	public void setJobNum(String jobNum) {
-		this.jobNum = jobNum;
-	}
-
-	public int getAssemblySequence() {
-		return assemblySequence;
-	}
-
-	public void setAssemblySequence(int assemblySequence) {
-		this.assemblySequence = assemblySequence;
-	}
-
-	public int getJobSequence() {
-		return jobSequence;
-	}
-
-	public void setJobSequence(int jobSequence) {
-		this.jobSequence = jobSequence;
-	}
 	
 	public int getPoNum() {
 		return poNum;
@@ -114,6 +86,14 @@ public class Supply {
 
 	public void setPoLine(int poLine) {
 		this.poLine = poLine;
+	}
+
+	public String getVendorName() {
+		return vendorName;
+	}
+
+	public void setVendorName(String vendorName) {
+		this.vendorName = vendorName;
 	}
 
 	public String getSourceFile() {

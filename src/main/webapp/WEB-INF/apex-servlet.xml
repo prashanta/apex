@@ -35,14 +35,14 @@
 	    <property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/radix" />
 		
+		<!-- 
 		<property name="username" value="root" />
 		<property name="password" value="root" />  
+		-->	
 		
-		<!-- 
 		<property name="username" value="xpd" />
 		<property name="password" value="xpd*2016" />
-		-->		
-				
+							
 	    <property name="initialSize" value="5" />
 	    <property name="maxActive" value="10" />
 	    <property name="maxIdle" value="5" />

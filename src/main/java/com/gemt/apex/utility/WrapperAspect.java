@@ -21,6 +21,6 @@ public class WrapperAspect {
 		Object result = pjp.proceed();
 		System.out.println("Wrap end");
 		System.out.println(result.getClass());
-		return new RestResponse(result);
+		return new RestResponse<Object>(result);
    	}
 }

@@ -17,6 +17,7 @@ import com.gemt.apex.model.bom.PartMaterial;
 import com.gemt.apex.model.bom.PartPlant;
 import com.gemt.apex.model.bom.PartRev;
 import com.gemt.apex.model.bom.Supply;
+import com.gemt.apex.model.bom.SupplyJob;
 
 @Service("partsService")
 public class PartsService {
@@ -97,12 +98,12 @@ public class PartsService {
 		return demands;
 	}
 	
-	public List<Demand> getPartDemandsFromOrders(String partNum) throws Exception{
+/*	public List<Demand> getPartDemandsFromOrders(String partNum) throws Exception{
 		List<Demand> demands = partsDao.listPartDemandsFromOrders(partNum);
 		if(demands.size() < 1)
 			throw new RestException(RestError.ORDER_DEMANDS_NOT_FOUND, "Sales orders not found for part: " + partNum);
 		return demands;
-	}
+	}*/
 	
 	public List<PartBin> getPartBins(String partNum) throws Exception{	
 		List<PartBin> bins = partsDao.listPartBins(partNum);
@@ -111,8 +112,8 @@ public class PartsService {
 		return bins;
 	}
 	
-	public List<Supply> getPartSuppliesFromJobs(String partNum) throws Exception{	
-		List<Supply> supplies = partsDao.listPartSuppliesFromJobs(partNum);
+	public List<SupplyJob> getPartSuppliesFromJobs(String partNum) throws Exception{	
+		List<SupplyJob> supplies = partsDao.listPartSuppliesFromJobs(partNum);
 		if(supplies.size() < 1)
 			throw new RestException(RestError.JOB_SUPPLY_NOT_FOUND, "Supplies not found for part: " + partNum);
 		return supplies;

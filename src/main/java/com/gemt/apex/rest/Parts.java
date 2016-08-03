@@ -19,6 +19,7 @@ import com.gemt.apex.model.bom.PartMaterial;
 import com.gemt.apex.model.bom.PartPlant;
 import com.gemt.apex.model.bom.PartRev;
 import com.gemt.apex.model.bom.Supply;
+import com.gemt.apex.model.bom.SupplyJob;
 import com.gemt.apex.service.PartsService;
 
 
@@ -124,10 +125,10 @@ public class Parts {
 		return partsService.getPartDemandsFromJobs(partNum);
 	}
 	
-	@RequestMapping(value="/demands/orders", produces=MediaType.APPLICATION_JSON_VALUE)
+	/*@RequestMapping(value="/demands/orders", produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<Demand> getPartDemandsFromOrders(@PathVariable(value = "partnum") String partNum) throws Exception {
 		return partsService.getPartDemandsFromOrders(partNum);
-	}
+	}*/
 	
 	/**
 	 * Get bins for given part.
@@ -143,7 +144,7 @@ public class Parts {
 	}
 	
 	@RequestMapping(value="/supplies/jobs", produces=MediaType.APPLICATION_JSON_VALUE)
-	public List<Supply> getPartSuppliesFromJobs(@PathVariable(value = "partnum") String partNum) throws Exception {
+	public List<SupplyJob> getPartSuppliesFromJobs(@PathVariable(value = "partnum") String partNum) throws Exception {
 		return partsService.getPartSuppliesFromJobs(partNum);
 	}
 	

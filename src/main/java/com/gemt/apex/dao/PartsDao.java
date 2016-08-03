@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.gemt.apex.dao.utility.DemandRowMapper;
 import com.gemt.apex.exception.RestError;
 import com.gemt.apex.exception.RestException;
 import com.gemt.apex.model.bom.Demand;
@@ -22,6 +23,7 @@ import com.gemt.apex.model.bom.PartMaterial;
 import com.gemt.apex.model.bom.PartPlant;
 import com.gemt.apex.model.bom.PartRev;
 import com.gemt.apex.model.bom.Supply;
+import com.gemt.apex.model.bom.SupplyJob;
 
 @Repository("partsDao")
 public class PartsDao {
@@ -178,21 +180,27 @@ public class PartsDao {
 						"SUM(ev_partdtl.Quantity) as quantity, " +
 						"ev_partdtl.IUM, " +
 						"ev_partdtl.JobNum, " +
-						"ev_partdtl.SourceFile " +
+						"ev_partdtl.SourceFile, " +
 						
+						"ev_jobhead.PartNum as finishedPart, " +
+						"ev_jobhead.PartDescription as finishedPartDescription, " +
+						"ev_jobhead.ProdQty as jobQty, " +
+						"ev_jobhead.StartDate as jobStartDate " +
+												
 						"FROM ev_partdtl " +
+						"LEFT JOIN ev_jobhead ON ev_partdtl.JobNum = ev_jobhead.JobNum " +
 						"WHERE ev_partdtl.partNum = ? AND " + 
 						"ev_partdtl.RequirementFlag = 1 AND ev_partdtl.SourceFile = 'JM' " +
 						"GROUP BY ev_partdtl.JobNum "+
 						"ORDER BY ev_partdtl.DueDate ASC ";
 		
-		RowMapper<Demand> rm = BeanPropertyRowMapper.newInstance(Demand.class);
-		
-		demands = jdbcTemplate.query(sql, new Object[]{partNum}, rm);							
+		System.out.println(sql);
+		//RowMapper<Demand> rm = BeanPropertyRowMapper.newInstance(Demand.class);		
+		demands = jdbcTemplate.query(sql, new Object[]{partNum}, new DemandRowMapper());							
 		return demands;
 	}
 	
-	@Transactional
+	/*@Transactional
 	public List<Demand> listPartDemandsFromOrders(String partNum){
 		List<Demand> demands = null;
 		String sql =	"SELECT " +
@@ -215,11 +223,11 @@ public class PartsDao {
 		
 		demands = jdbcTemplate.query(sql, new Object[]{partNum}, rm);							
 		return demands;
-	}
+	}*/
 	
 	@Transactional
-	public List<Supply> listPartSuppliesFromJobs(String partNum){
-		List<Supply> supplies = null;
+	public List<SupplyJob> listPartSuppliesFromJobs(String partNum){
+		List<SupplyJob> supplies = null;
 		String sql =	"SELECT " +
 						"ev_partdtl.PartNum, " + 
 						"ev_partdtl.RevisionNum, " + 
@@ -236,7 +244,7 @@ public class PartsDao {
 						"GROUP BY ev_partdtl.JobNum "+
 						"ORDER BY ev_partdtl.DueDate ASC ";
 		
-		RowMapper<Supply> rm = BeanPropertyRowMapper.newInstance(Supply.class);
+		RowMapper<SupplyJob> rm = BeanPropertyRowMapper.newInstance(SupplyJob.class);
 		
 		supplies = jdbcTemplate.query(sql, new Object[]{partNum}, rm);							
 		return supplies;
@@ -253,14 +261,19 @@ public class PartsDao {
 						"SUM(ev_partdtl.Quantity) as quantity, " +
 						"ev_partdtl.IUM, " +
 						"ev_partdtl.PONum, " +
-						"ev_partdtl.SourceFile " +
+						"ev_partdtl.SourceFile, " +
+						
+						"ev_vendor.Name as vendorName " +
 						
 						"FROM ev_partdtl " +
+						"LEFT JOIN ev_poheader ON ev_partdtl.PONum = ev_poheader.PONum " +
+						"LEFT JOIN ev_vendor ON ev_poheader.VendorNum = ev_vendor.VendorNum " +
+						
 						"WHERE ev_partdtl.partNum = ? " +
 						"AND ev_partdtl.RequirementFlag = 0 AND ev_partdtl.SourceFile = 'PO'" +
 						"GROUP BY ev_partdtl.PONum "+
 						"ORDER BY ev_partdtl.DueDate ASC ";
-		
+				
 		RowMapper<Supply> rm = BeanPropertyRowMapper.newInstance(Supply.class);
 		
 		supplies = jdbcTemplate.query(sql, new Object[]{partNum}, rm);							

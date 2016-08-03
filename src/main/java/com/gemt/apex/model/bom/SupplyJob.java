@@ -2,7 +2,7 @@ package com.gemt.apex.model.bom;
 
 import java.sql.Date;
 
-public class Demand {
+public class SupplyJob {
 	
 	String partNum;
 	
@@ -18,18 +18,11 @@ public class Demand {
 	
 	String jobNum;
 	
-	int orderNum;
-		
+	int assemblySequence;
+	
+	int jobSequence;
+	
 	String sourceFile;
-	
-	
-	String finishedPart;
-	
-	String finishedPartDescription;
-	
-	float jobQty;
-	
-	Date jobStartDate;
 
 	public String getPartNum() {
 		return partNum;
@@ -87,13 +80,20 @@ public class Demand {
 		this.jobNum = jobNum;
 	}
 
-	
-	public int getOrderNum() {
-		return orderNum;
+	public int getAssemblySequence() {
+		return assemblySequence;
 	}
 
-	public void setOrderNum(int orderNum) {
-		this.orderNum = orderNum;
+	public void setAssemblySequence(int assemblySequence) {
+		this.assemblySequence = assemblySequence;
+	}
+
+	public int getJobSequence() {
+		return jobSequence;
+	}
+
+	public void setJobSequence(int jobSequence) {
+		this.jobSequence = jobSequence;
 	}
 
 	public String getSourceFile() {
@@ -103,37 +103,6 @@ public class Demand {
 	public void setSourceFile(String sourceFile) {
 		this.sourceFile = sourceFile;
 	}
-
-	public String getFinishedPart() {
-		return finishedPart;
-	}
-
-	public void setFinishedPart(String finishedPart) {
-		this.finishedPart = finishedPart;
-	}
-
-	public String getFinishedPartDescription() {
-		return finishedPartDescription;
-	}
-
-	public void setFinishedPartDescription(String finishedPartDescription) {
-		this.finishedPartDescription = finishedPartDescription;
-	}
-
-	public float getJobQty() {
-		return jobQty;
-	}
-
-	public void setJobQty(float jobQty) {
-		this.jobQty = jobQty;
-	}
-
-	public Date getJobStartDate() {
-		return jobStartDate;
-	}
-
-	public void setJobStartDate(Date jobStartDate) {
-		this.jobStartDate = jobStartDate;
-	}
+	
 		
 }
