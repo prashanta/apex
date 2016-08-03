@@ -194,8 +194,6 @@ public class PartsDao {
 						"GROUP BY ev_partdtl.JobNum "+
 						"ORDER BY ev_partdtl.DueDate ASC ";
 		
-		System.out.println(sql);
-		//RowMapper<Demand> rm = BeanPropertyRowMapper.newInstance(Demand.class);		
 		demands = jdbcTemplate.query(sql, new Object[]{partNum}, new DemandRowMapper());							
 		return demands;
 	}
