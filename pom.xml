@@ -5,7 +5,7 @@
 
 	<groupId>com.gemt.apex</groupId>
 	<artifactId>apex</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.2.0-SNAPSHOT</version>
 	<name>apex</name>
 	<packaging>war</packaging>
 	<url>http://maven.apache.org</url>

@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gemt.apex.exception.ErrorMessage;
 import com.gemt.apex.model.bom.Demand;
+import com.gemt.apex.model.bom.Inspection;
+import com.gemt.apex.model.bom.Parent;
 import com.gemt.apex.model.bom.PartBin;
 import com.gemt.apex.model.bom.PartDetail;
 import com.gemt.apex.model.bom.PartMaterial;
@@ -124,11 +126,7 @@ public class Parts {
 	public List<Demand> getPartDemandsFromJobs(@PathVariable(value = "partnum") String partNum) throws Exception {
 		return partsService.getPartDemandsFromJobs(partNum);
 	}
-	
-	/*@RequestMapping(value="/demands/orders", produces=MediaType.APPLICATION_JSON_VALUE)
-	public List<Demand> getPartDemandsFromOrders(@PathVariable(value = "partnum") String partNum) throws Exception {
-		return partsService.getPartDemandsFromOrders(partNum);
-	}*/
+
 	
 	/**
 	 * Get bins for given part.
@@ -153,6 +151,15 @@ public class Parts {
 		return partsService.getPartSuppliesFromPOs(partNum);
 	}
 	
+	@RequestMapping(value="/parents", produces=MediaType.APPLICATION_JSON_VALUE)
+	public List<Parent> getPartParents(@PathVariable(value = "partnum") String partNum) throws Exception {
+		return partsService.getPartParents(partNum);
+	}
+	
+	@RequestMapping(value="/inspections", produces=MediaType.APPLICATION_JSON_VALUE)
+	public List<Inspection> getPendingInspections(@PathVariable(value = "partnum") String partNum) throws Exception {
+		return partsService.getPendingInspections(partNum);
+	}
 	
 	@RequestMapping(value="**", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(value = HttpStatus.NOT_FOUND)

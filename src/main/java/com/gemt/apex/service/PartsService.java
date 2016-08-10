@@ -10,6 +10,8 @@ import com.gemt.apex.dao.PartsDao;
 import com.gemt.apex.exception.RestError;
 import com.gemt.apex.exception.RestException;
 import com.gemt.apex.model.bom.Demand;
+import com.gemt.apex.model.bom.Inspection;
+import com.gemt.apex.model.bom.Parent;
 import com.gemt.apex.model.bom.Part;
 import com.gemt.apex.model.bom.PartBin;
 import com.gemt.apex.model.bom.PartDetail;
@@ -98,13 +100,6 @@ public class PartsService {
 		return demands;
 	}
 	
-/*	public List<Demand> getPartDemandsFromOrders(String partNum) throws Exception{
-		List<Demand> demands = partsDao.listPartDemandsFromOrders(partNum);
-		if(demands.size() < 1)
-			throw new RestException(RestError.ORDER_DEMANDS_NOT_FOUND, "Sales orders not found for part: " + partNum);
-		return demands;
-	}*/
-	
 	public List<PartBin> getPartBins(String partNum) throws Exception{	
 		List<PartBin> bins = partsDao.listPartBins(partNum);
 		if(bins.size() < 1)
@@ -124,5 +119,22 @@ public class PartsService {
 		if(supplies.size() < 1)
 			throw new RestException(RestError.PO_SUPPLY_NOT_FOUND, "Supplies not found for part: " + partNum);
 		return supplies;
+	}
+	
+	public List<Parent> getPartParents(String partNum) throws Exception{	
+		List<Parent> parents = partsDao.getPartParents(partNum);
+		if(parents.size() < 1)
+			throw new RestException(RestError.PARENTS_NOT_FOUND, "Parents not found for part: " + partNum);
+		return parents;
+	}
+	
+	/*
+	 * For a given part number get pending inspection after receiving part from PO.
+	 * */
+	public List<Inspection> getPendingInspections(String partNum) throws Exception{	
+		List<Inspection> parents = partsDao.getPendingInspections(partNum);
+		if(parents.size() < 1)
+			throw new RestException(RestError.PENDING_INSPECTION_NOT_FOUND, "Pending inspection not found for part: " + partNum);
+		return parents;
 	}
 }

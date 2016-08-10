@@ -17,6 +17,8 @@ import com.gemt.apex.dao.utility.DemandRowMapper;
 import com.gemt.apex.exception.RestError;
 import com.gemt.apex.exception.RestException;
 import com.gemt.apex.model.bom.Demand;
+import com.gemt.apex.model.bom.Inspection;
+import com.gemt.apex.model.bom.Parent;
 import com.gemt.apex.model.bom.Part;
 import com.gemt.apex.model.bom.PartBin;
 import com.gemt.apex.model.bom.PartMaterial;
@@ -276,6 +278,51 @@ public class PartsDao {
 		
 		supplies = jdbcTemplate.query(sql, new Object[]{partNum}, rm);							
 		return supplies;
+	}
+	
+	@Transactional
+	public List<Parent> getPartParents(String partNum){
+		List<Parent> parents = null;
+		String sql =	"SELECT " +
+						"ev_partmtl.PartNum, " +
+						"ev_partmtl.RevisionNum, " +
+						"ev_part.PartDescription, " +
+						"ev_partmtl.QtyPer, " +						
+						"ev_partmtl.BubbleNum, " +						
+						"ev_partmtl.MtlSeq, " +						
+						"ev_part.Class as partClass, " +
+						"ev_part.TypeCode, " +
+						"ev_partrev.Approved as revApproved " +
+
+						"FROM ev_partmtl " +
+						"LEFT JOIN ev_part ON ev_part.PartNum = ev_partmtl.PartNum " +
+						"LEFT JOIN ev_partrev ON ev_partrev.PartNum = ev_partmtl.PartNum AND ev_partrev.PartNum = ev_partmtl.PartNum " +
+						"WHERE ev_partmtl.MtlPartNum = ? ";
+	
+		RowMapper<Parent> rm = BeanPropertyRowMapper.newInstance(Parent.class);
+		
+		parents = jdbcTemplate.query(sql, new Object[]{partNum}, rm);							
+		return parents;
+	}
+	
+	@Transactional
+	public List<Inspection> getPendingInspections(String partNum){
+		List<Inspection> inspections = null;
+		String sql =	"SELECT " +
+						"ev_rcvdtl.PackSlip, " +
+						"ev_rcvdtl.BinNum, " +						
+						"ev_rcvdtl.PONum, " +						
+						"ev_rcvdtl.VendorQty, " +						
+						"ev_rcvdtl.ReceivedTo, " +
+						"ev_rcvdtl.receiptDate " +
+						
+						"FROM ev_rcvdtl " +
+						"WHERE ev_rcvdtl.PartNum = ? AND ev_rcvdtl.InspectionPending = 1";
+	
+		RowMapper<Inspection> rm = BeanPropertyRowMapper.newInstance(Inspection.class);
+		
+		inspections = jdbcTemplate.query(sql, new Object[]{partNum}, rm);							
+		return inspections;
 	}
 
 }

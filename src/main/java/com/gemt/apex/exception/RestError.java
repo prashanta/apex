@@ -21,6 +21,10 @@ public enum RestError{
 	ORDER_DEMANDS_NOT_FOUND(204, "Sales order demands not found"),
 
 	PO_SUPPLY_NOT_FOUND(205, "POs not found"),
+
+	PARENTS_NOT_FOUND(206, "Parents not found"),
+	
+	PENDING_INSPECTION_NOT_FOUND(207, "Pending inspection not found"),
 	
 	WORK_CENTER_NONEXISTENT(501, "Work Center does not exist"),
 	
