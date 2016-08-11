@@ -35,6 +35,8 @@ public class DemandRowMapper implements RowMapper<Demand>{
 		Object startDate = rs.getObject("jobStartDate");
 		demand.setJobStartDate( startDate==null? null : (Date)startDate );
 		
+		demand.setProjectId(rs.getString("projectId"));
+		
 		return demand;// TODO Auto-generated method stub
 	}
 

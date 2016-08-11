@@ -23,6 +23,8 @@ public class PartMaterial {
 	
 	String typeCode;
 	
+	boolean nonStock;
+	
 	String project;
 	
 	String ium;
@@ -118,6 +120,14 @@ public class PartMaterial {
 		this.typeCode = typeCode;
 	}
 	
+	public boolean isNonStock() {
+		return nonStock;
+	}
+
+	public void setNonStock(boolean nonStock) {
+		this.nonStock = nonStock;
+	}
+
 	public String getProject() {
 		return project;
 	}

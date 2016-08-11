@@ -140,7 +140,8 @@ public class PartsDao {
 						"ev_part.PartDescription, " +
 						"ev_part.Class as partClass, " +
 						"ev_part.TypeCode, " +
-						"ev_part.Project, " +
+						"ev_part.NonStock, " +
+						"ev_part.Project, " +						
 						"ev_part.IUM " +
 						
 						"FROM ev_partmtl " +
@@ -187,7 +188,8 @@ public class PartsDao {
 						"ev_jobhead.PartNum as finishedPart, " +
 						"ev_jobhead.PartDescription as finishedPartDescription, " +
 						"ev_jobhead.ProdQty as jobQty, " +
-						"ev_jobhead.StartDate as jobStartDate " +
+						"ev_jobhead.StartDate as jobStartDate, " +
+						"ev_jobhead.ProjectID as projectId " +
 												
 						"FROM ev_partdtl " +
 						"LEFT JOIN ev_jobhead ON ev_partdtl.JobNum = ev_jobhead.JobNum " +

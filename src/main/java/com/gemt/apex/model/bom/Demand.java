@@ -27,6 +27,8 @@ public class Demand {
 	
 	String finishedPartDescription;
 	
+	String projectId;
+	
 	float jobQty;
 	
 	Date jobStartDate;
@@ -118,6 +120,14 @@ public class Demand {
 
 	public void setFinishedPartDescription(String finishedPartDescription) {
 		this.finishedPartDescription = finishedPartDescription;
+	}
+
+	public String getProjectId() {
+		return projectId;
+	}
+
+	public void setProjectId(String projectId) {
+		this.projectId = projectId;
 	}
 
 	public float getJobQty() {
