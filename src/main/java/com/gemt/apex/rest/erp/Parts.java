@@ -1,4 +1,4 @@
-package com.gemt.apex.rest;
+package com.gemt.apex.rest.erp;
 
 import java.util.List;
 

@@ -2,6 +2,8 @@ package com.gemt.apex.exception;
 
 public enum RestError{
 		
+	DATA_NOT_FOUND(100, "Data not found"),
+	
 	PART_NOT_FOUND(101, "Part not found"),
 	
 	PART_REVISION_NOT_FOUND(103, "Part revision not found"),
@@ -11,6 +13,8 @@ public enum RestError{
 	PART_BIN_NOT_FOUND(106, "Part bin not found"),
 	
 	PART_PLANT_INFO_NOT_FOUND(107, "Part plant information not found"),
+	
+	JOB_NOT_FOUND(108, "Job not found"),
 	
 	MATERIALS_NOT_FOUND(201, "Child parts not found"),
 	
