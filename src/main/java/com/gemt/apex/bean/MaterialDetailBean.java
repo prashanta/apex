@@ -58,7 +58,7 @@ public class MaterialDetailBean{
 	public float getQtyPer() {
 		return qtyPer;
 	}
-	public void setQtyPer(int qtyPer) {
+	public void setQtyPer(float qtyPer) {
 		this.qtyPer = qtyPer;
 	}
 	public String getMtlPartNum() {

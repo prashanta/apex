@@ -2,7 +2,7 @@ package com.gemt.apex.model.bom;
 
 public class PartBin {
 	String binNum;
-	int onHandQty;
+	float onHandQty;
 	
 	public String getBinNum() {
 		return binNum;
@@ -10,10 +10,10 @@ public class PartBin {
 	public void setBinNum(String binNum) {
 		this.binNum = binNum;
 	}
-	public int getOnHandQty() {
+	public float getOnHandQty() {
 		return onHandQty;
 	}
-	public void setOnHandQty(int onHandQty) {
+	public void setOnHandQty(float onHandQty) {
 		this.onHandQty = onHandQty;
 	}
 }

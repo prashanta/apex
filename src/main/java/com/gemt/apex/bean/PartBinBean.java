@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class PartBinBean {
 	String binNum;
-	int onhandQty;
+	float onhandQty;
 	
 	public String getBinNum() {
 		return binNum;
@@ -13,10 +13,10 @@ public class PartBinBean {
 	public void setBinNum(String binNum) {
 		this.binNum = binNum;
 	}
-	public int getOnhandQty() {
+	public float getOnhandQty() {
 		return onhandQty;
 	}
-	public void setOnhandQty(int onhandQty) {
+	public void setOnhandQty(float onhandQty) {
 		this.onhandQty = onhandQty;
 	}
 }
