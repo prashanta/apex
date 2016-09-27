@@ -47,32 +47,12 @@
 	    <property name="maxActive" value="10" />
 	    <property name="maxIdle" value="5" />
 	    <property name="minIdle" value="2" />
+	    
+	    <property name="maxAge" value="180000" />
+	    <property name="testOnBorrow" value="true" />
+	    <property name="testWhileIdle" value="true" />
+	    <property name="validationInterval" value="0" />
+	    <property name="validationQuery" value="SELECT 1" />
 	</bean>
 	
-	<!-- 
-	<bean id="dataSource1" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/radix" />
-		<property name="username" value="root" />
-		<property name="password" value="root" /> 
-		
-		<property name="url" value="jdbc:mysql://192.168.74.99:3306/radix" />
-		<property name="username" value="xpd" />
-		<property name="password" value="xpd*2016" />
-		
-	</bean>
- 	-->
- 	
-	<!-- 
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-		<property name="dataSource" ref="dataSource1" />
-		<property name="configLocation" value="classpath:hibernate.cfg.xml" />
-	</bean>
-	
-	<tx:annotation-driven />
-	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean> 
-	-->
-
 </beans>

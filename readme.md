@@ -27,6 +27,7 @@ curl --upload-file target/apex.war "http://username:password@192.168.1.99:8080/m
 | /api/parts/{partnum}/demands/orders | Get list of sales orders that demands part. |
 | /api/parts/{partnum}/supplies/jobs | Get list of jobs that produces part. |
 | /api/parts/{partnum}/supplies/pos | Get list of purchase orders that produces part. |
+| /api/parts/{partnum}/salesorders| Get list of sales orders that demand part. |
 | /api/jobs/{jobnum}| Get information on said Job Number |
 | /api/jobs/{jobnum}/subs/{asmseq}| Get list of sub-assemblies for said Job Number and assembly sequence|
 | /api/jobs/{jobnum}/mtls/{asmseq}| Get list of materials for said Job Number and assembly sequence|

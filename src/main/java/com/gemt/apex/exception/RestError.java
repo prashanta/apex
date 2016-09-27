@@ -30,6 +30,8 @@ public enum RestError{
 	
 	PENDING_INSPECTION_NOT_FOUND(207, "Pending inspection not found"),
 	
+	SALES_ORDER_NOT_FOUND(208, "Sales order not found"),
+	
 	WORK_CENTER_NONEXISTENT(501, "Work Center does not exist"),
 	
 	WORK_CENTERS_NOT_FOUND(502, "Work Centers not found"),

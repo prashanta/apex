@@ -24,6 +24,7 @@ import com.gemt.apex.model.bom.PartBin;
 import com.gemt.apex.model.bom.PartMaterial;
 import com.gemt.apex.model.bom.PartPlant;
 import com.gemt.apex.model.bom.PartRev;
+import com.gemt.apex.model.bom.SalesOrder;
 import com.gemt.apex.model.bom.Supply;
 import com.gemt.apex.model.bom.SupplyJob;
 
@@ -311,20 +312,36 @@ public class PartsDao {
 	public List<Inspection> getPendingInspections(String partNum){
 		List<Inspection> inspections = null;
 		String sql =	"SELECT " +
-						"ev_rcvdtl.PackSlip, " +
-						"ev_rcvdtl.BinNum, " +						
-						"ev_rcvdtl.PONum, " +						
-						"ev_rcvdtl.VendorQty, " +						
-						"ev_rcvdtl.ReceivedTo, " +
-						"ev_rcvdtl.receiptDate " +
-						
+				"ev_rcvdtl.PackSlip, " +
+				"ev_rcvdtl.BinNum, " +						
+				"ev_rcvdtl.PONum, " +						
+				"ev_rcvdtl.VendorQty, " +						
+				"ev_rcvdtl.ReceivedTo, " +
+				"ev_rcvdtl.receiptDate " +
+				
 						"FROM ev_rcvdtl " +
 						"WHERE ev_rcvdtl.PartNum = ? AND ev_rcvdtl.InspectionPending = 1";
-	
+		
 		RowMapper<Inspection> rm = BeanPropertyRowMapper.newInstance(Inspection.class);
 		
 		inspections = jdbcTemplate.query(sql, new Object[]{partNum}, rm);							
 		return inspections;
 	}
-
+	
+	@Transactional
+	public List<SalesOrder> getSalesOrders(String partNum){
+		List<SalesOrder> orders = null;
+		String sql =	"SELECT " +
+						"ev_partdtl.OrderNum, " +
+						"ev_partdtl.OrderLine, " +						
+						"ev_partdtl.Quantity, " +						
+						"ev_partdtl.DueDate " +
+						"FROM ev_partdtl " +
+						"WHERE ev_partdtl.PartNum = ? AND OrderNum > 0";
+	
+		RowMapper<SalesOrder> rm = BeanPropertyRowMapper.newInstance(SalesOrder.class);
+		
+		orders = jdbcTemplate.query(sql, new Object[]{partNum}, rm);							
+		return orders;
+	}
 }

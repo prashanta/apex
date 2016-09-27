@@ -18,6 +18,7 @@ import com.gemt.apex.model.bom.PartDetail;
 import com.gemt.apex.model.bom.PartMaterial;
 import com.gemt.apex.model.bom.PartPlant;
 import com.gemt.apex.model.bom.PartRev;
+import com.gemt.apex.model.bom.SalesOrder;
 import com.gemt.apex.model.bom.Supply;
 import com.gemt.apex.model.bom.SupplyJob;
 
@@ -135,6 +136,16 @@ public class PartsService {
 		List<Inspection> parents = partsDao.getPendingInspections(partNum);
 		if(parents.size() < 1)
 			throw new RestException(RestError.PENDING_INSPECTION_NOT_FOUND, "Pending inspection not found for part: " + partNum);
+		return parents;
+	}
+	
+	/*
+	 * For a given part number get pending sales order demands.
+	 * */
+	public List<SalesOrder> getSalesOrders(String partNum) throws Exception{	
+		List<SalesOrder> parents = partsDao.getSalesOrders(partNum);
+		if(parents.size() < 1)
+			throw new RestException(RestError.SALES_ORDER_NOT_FOUND, "Pending inspection not found for part: " + partNum);
 		return parents;
 	}
 }

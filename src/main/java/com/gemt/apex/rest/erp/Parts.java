@@ -20,6 +20,7 @@ import com.gemt.apex.model.bom.PartDetail;
 import com.gemt.apex.model.bom.PartMaterial;
 import com.gemt.apex.model.bom.PartPlant;
 import com.gemt.apex.model.bom.PartRev;
+import com.gemt.apex.model.bom.SalesOrder;
 import com.gemt.apex.model.bom.Supply;
 import com.gemt.apex.model.bom.SupplyJob;
 import com.gemt.apex.service.PartsService;
@@ -159,6 +160,11 @@ public class Parts {
 	@RequestMapping(value="/inspections", produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<Inspection> getPendingInspections(@PathVariable(value = "partnum") String partNum) throws Exception {
 		return partsService.getPendingInspections(partNum);
+	}
+	
+	@RequestMapping(value="/salesorders", produces=MediaType.APPLICATION_JSON_VALUE)
+	public List<SalesOrder> getSalesOrders(@PathVariable(value = "partnum") String partNum) throws Exception {
+		return partsService.getSalesOrders(partNum);
 	}
 	
 	@RequestMapping(value="**", produces=MediaType.APPLICATION_JSON_VALUE)
