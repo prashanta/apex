@@ -18,6 +18,7 @@ import com.gemt.apex.model.bom.PartDetail;
 import com.gemt.apex.model.bom.PartMaterial;
 import com.gemt.apex.model.bom.PartPlant;
 import com.gemt.apex.model.bom.PartRev;
+import com.gemt.apex.model.bom.PlantWhse;
 import com.gemt.apex.model.bom.SalesOrder;
 import com.gemt.apex.model.bom.Supply;
 import com.gemt.apex.model.bom.SupplyJob;
@@ -60,6 +61,11 @@ public class PartsService {
 		if (plants.size() < 1)
 			throw new RestException(RestError.PART_PLANT_INFO_NOT_FOUND, "Plant information not found for part: " + partNum);
 		return plants;
+	}
+	
+	public PlantWhse getPartPrimaryBin(String partNum) throws Exception{
+		PlantWhse primaryBin = partsDao.getPartPrimaryBin(partNum);		
+		return primaryBin;
 	}
 	
 	

@@ -23,6 +23,7 @@ curl --upload-file target/apex.war "http://username:password@192.168.1.99:8080/m
 | /api/parts/{partnum}/revisions/primary | Get primary revision of given part number. |
 | /api/parts/{partnum}/{partrev}/materials | Get materials of a give part number and revision. |
 | /api/parts/{partnum}/bins | Get list of bins containing part. |
+| /api/parts/{partnum}/bins/primary | Get primary bin of part. |
 | /api/parts/{partnum}/demands/jobs | Get list of jobs that demands part. |
 | /api/parts/{partnum}/demands/orders | Get list of sales orders that demands part. |
 | /api/parts/{partnum}/supplies/jobs | Get list of jobs that produces part. |

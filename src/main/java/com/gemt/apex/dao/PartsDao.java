@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +25,7 @@ import com.gemt.apex.model.bom.PartBin;
 import com.gemt.apex.model.bom.PartMaterial;
 import com.gemt.apex.model.bom.PartPlant;
 import com.gemt.apex.model.bom.PartRev;
+import com.gemt.apex.model.bom.PlantWhse;
 import com.gemt.apex.model.bom.SalesOrder;
 import com.gemt.apex.model.bom.Supply;
 import com.gemt.apex.model.bom.SupplyJob;
@@ -100,6 +102,16 @@ public class PartsDao {
 		RowMapper<PartPlant> rm = BeanPropertyRowMapper.newInstance(PartPlant.class);
 		plants = jdbcTemplate.query(sql, new Object[]{partNum}, rm);		
 		return plants;
+	}
+	
+	@Transactional
+	public PlantWhse getPartPrimaryBin(String partNum) throws Exception {
+		String sql = 	"SELECT PrimBin as primaryBin " + 
+						"FROM ev_plantWhse " +
+						"WHERE ev_plantWhse.PartNum = ? LIMIT 1";
+		
+		PlantWhse bin = jdbcTemplate.queryForObject(sql, new Object[]{partNum}, BeanPropertyRowMapper.newInstance(PlantWhse.class));		
+		return bin;
 	}
 	
 	@Transactional

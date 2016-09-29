@@ -20,6 +20,7 @@ import com.gemt.apex.model.bom.PartDetail;
 import com.gemt.apex.model.bom.PartMaterial;
 import com.gemt.apex.model.bom.PartPlant;
 import com.gemt.apex.model.bom.PartRev;
+import com.gemt.apex.model.bom.PlantWhse;
 import com.gemt.apex.model.bom.SalesOrder;
 import com.gemt.apex.model.bom.Supply;
 import com.gemt.apex.model.bom.SupplyJob;
@@ -89,6 +90,7 @@ public class Parts {
 		return partsService.getPartPlants(partNum);
 	}
 	
+	
 	/**
 	 * Get primary revision of part number. If approved revision is more than one, returns the latest. 
 	 * If no approved revisions found, returns the latest un-approved revision. 
@@ -140,6 +142,18 @@ public class Parts {
 	@RequestMapping(value="/bins", produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<PartBin> getPartBins(@PathVariable(value = "partnum") String partNum) throws Exception {
 		return partsService.getPartBins(partNum);
+	}
+	
+	/**
+	 * Get primary bin for given part number 
+	 * 
+	 * @param partNum
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/bins/primary", produces=MediaType.APPLICATION_JSON_VALUE)
+	public PlantWhse getPartPrimaryBin(@PathVariable(value = "partnum") String partNum) throws Exception {
+		return partsService.getPartPrimaryBin(partNum);
 	}
 	
 	@RequestMapping(value="/supplies/jobs", produces=MediaType.APPLICATION_JSON_VALUE)
